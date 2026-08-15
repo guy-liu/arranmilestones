@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const milestones = await getCollection('milestones');
+  return milestones.map((entry) => {
+    const slug = entry.slug || entry.id;
+    return {
+      params: { id: slug },
+      props: { entry },
+    };
+  });
+}
+
+interface Props {
+  entry: any;
+}
+
+const { entry } = Astro.props;
+---
+
+<Layout>
+	<main style="max-width:900px;margin:0 auto;padding:2rem;">
+		<h1>{entry.data.title}</h1>
+
+		<p style="color:#666;margin-bottom:1.5rem;font-size:1.1rem;">
+			<strong>Location:</strong> {entry.data.location}
+		</p>
+
+		<p style="margin-bottom:2rem;">
+			{entry.data.description}
+		</p>
+
+		<section style="margin-top:2rem;">
+			<h2>Details</h2>
+			<div style="line-height:1.6;">
+				{entry.body && <p>{entry.body}</p>}
+			</div>
+		</section>
+
+		<section style="margin-top:2rem;">
+			<a href="/">← Back to Home</a>
+		</section>
+
+	</main>
+</Layout>

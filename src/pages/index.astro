@@ -1,7 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import arranImage from '../assets/arran.jpg';
+
+const milestones = await getCollection('milestones');
+const sortedMilestones = milestones.sort((a, b) => {
+  const slugA = a.slug || a.id;
+  const slugB = b.slug || b.id;
+  const numA = parseInt(slugA.split('-')[1]);
+  const numB = parseInt(slugB.split('-')[1]);
+  return numA - numB;
+});
 ---
 
 <Layout>
@@ -9,7 +19,7 @@ import arranImage from '../assets/arran.jpg';
 		<h1>Arran Mile Stones — A Brief History</h1>
 
 		<figure style="margin:1rem 0;">
-			<Image src={arranImage} alt="Map of the Isle of Arran." />
+			<Image src={arranImage} alt="Map of the Isle of Arran." style="width: 80vw; height: auto; max-width: 100%;" />
 			<figcaption style="font-size:0.9rem;color:#555;margin-top:0.5rem;">Map of the Isle of Arran</figcaption>
 		</figure>
 
@@ -24,6 +34,29 @@ import arranImage from '../assets/arran.jpg';
 		<p>
 			This site will collect photographs and locations of Arran's surviving mile stones — if you have images or precise locations, they can be added to dedicated pages for each marker.
 		</p>
+
+		<section style="margin-top:2rem;">
+			<h2>Milestones</h2>
+			<table style="width:100%;border-collapse:collapse;margin-top:1rem;">
+				<thead>
+					<tr style="border-bottom:2px solid #333;">
+						<th style="text-align:left;padding:0.75rem;font-weight:bold;">Milestone</th>
+						<th style="text-align:left;padding:0.75rem;font-weight:bold;">Location</th>
+					</tr>
+				</thead>
+				<tbody>
+					{sortedMilestones.map((milestone) => {
+						const slug = milestone.slug || milestone.id;
+						return (
+							<tr style="border-bottom:1px solid #ddd;">
+								<td style="padding:0.75rem;"><a href={`/milestones/${slug}/`}>{milestone.data.title}</a></td>
+								<td style="padding:0.75rem;">{milestone.data.location}</td>
+							</tr>
+						);
+					})}
+				</tbody>
+			</table>
+		</section>
 
 		<section style="margin-top:2rem;">
 			<a href="https://en.wikipedia.org/wiki/Isle_of_Arran" target="_blank" rel="noopener">Learn more about the Isle of Arran (Wikipedia)</a>
