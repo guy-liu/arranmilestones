@@ -1,0 +1,32 @@
+  - name: Setup Node
+    uses: actions/setup-node@v4
+    with:
+      node-version: 'lts/*'
+
+  - name: Install dependencies
+    run: npm ci
+
+  - name: Build site
+    run: npm run build
+
+  - name: Ensure CNAME present in build (safe-guard)
+    run: |
+      if [ -f ./public/CNAME ]; then
+        echo "public/CNAME exists; copying to dist"
+        mkdir -p dist
+        cp public/CNAME dist/CNAME
+      else
+        echo "arranmilestones.co.uk" > ./dist/CNAME
+      fi
+
+  - name: Configure GitHub Pages
+    uses: actions/configure-pages@v3
+
+  - name: Upload artifact for Pages
+    uses: actions/upload-pages-artifact@v1
+    with:
+      path: ./dist
+
+  - name: Deploy to GitHub Pages
+    uses: actions/deploy-pages@v1
+
