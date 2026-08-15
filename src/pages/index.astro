@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import arranImage from '../assets/arran.jpg';
 ---
 
 <Layout>
@@ -7,8 +9,8 @@ import Layout from '../layouts/Layout.astro';
 		<h1>Arran Mile Stones — A Brief History</h1>
 
 		<figure style="margin:1rem 0;">
-			<img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Isle_of_Arran_map.svg" alt="Map of the Isle of Arran" style="width:100%;height:auto;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.12);" />
-			<figcaption style="font-size:0.9rem;color:#555;margin-top:0.5rem;">Map of the Isle of Arran — source: Wikimedia Commons</figcaption>
+			<Image src={arranImage} alt="Map of the Isle of Arran." />
+			<figcaption style="font-size:0.9rem;color:#555;margin-top:0.5rem;">Map of the Isle of Arran</figcaption>
 		</figure>
 
 		<p>
