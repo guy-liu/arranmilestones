@@ -1,11 +1,31 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<main style="max-width:900px;margin:0 auto;padding:2rem;">
+		<h1>Arran Mile Stones — A Brief History</h1>
+
+		<figure style="margin:1rem 0;">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Isle_of_Arran_map.svg" alt="Map of the Isle of Arran" style="width:100%;height:auto;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.12);" />
+			<figcaption style="font-size:0.9rem;color:#555;margin-top:0.5rem;">Map of the Isle of Arran — source: Wikimedia Commons</figcaption>
+		</figure>
+
+		<p>
+			The Isle of Arran, off the west coast of Scotland, has a long history of wayfinding and distance marking. Mile stones (often written "mile-stones" or "milestones") were commonly placed along the island's main roads from the 18th and 19th centuries to indicate distances between settlements such as Brodick, Lamlash, Whiting Bay and Lochranza.
+		</p>
+
+		<p>
+			These small cast- or stone-mounted markers were typically sited by local parishes or turnpike trusts as travel and trade increased. They helped people, coaches and later motor vehicles to judge distance and find their way across the island's rural roads. Many surviving mile stones are now valued local heritage features and some are recorded on historic environment registers.
+		</p>
+
+		<p>
+			This site will collect photographs and locations of Arran's surviving mile stones — if you have images or precise locations, they can be added to dedicated pages for each marker.
+		</p>
+
+		<section style="margin-top:2rem;">
+			<a href="https://en.wikipedia.org/wiki/Isle_of_Arran" target="_blank" rel="noopener">Learn more about the Isle of Arran (Wikipedia)</a>
+		</section>
+
+	</main>
 </Layout>
